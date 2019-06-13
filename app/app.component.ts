@@ -7,10 +7,13 @@ import {Component} from '@angular/core';
     <div class="app">
     <button (click)="handleClick()">change to my name</button>
       <input
-      (input)="handleInput($event)" 
         type="text" 
-        [value]="name"
-      (blur)="handleBlur($event)">
+        [ngModel]="name"
+        (ngModelChange)="handleChange($event)">
+        <input
+        type="text" 
+        [(ngModel)]="name"
+        >
       <div>{{name}}</div>
     </div>
   `
@@ -20,10 +23,7 @@ export class AppComponent {
   handleClick(){
     this.name = 'Ultimate Plunge';
   };
-  handleInput(event: any){
-    this.name = event.target.value;
-  }
-  handleBlur(event: any){
-    console.log(event);
-  }
+  handleChange(value: string){
+    this.name = value;
+  };
 }
